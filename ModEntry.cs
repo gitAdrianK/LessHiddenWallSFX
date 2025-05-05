@@ -121,10 +121,9 @@ namespace LessHiddenWallSFX
                     continue;
                 }
                 var traverse = Traverse.Create(entity);
-                // - 360 because screen 1 is positive coordinates.
-                // From 360 to 0 is screen 1 => 0 to -360.
-                // From 0 to -360 is screen 2 => -360 to -720.
-                var screen = ((int)Traverse.Create(entity).Field("m_position").GetValue<Vector2>().Y - 360) / -360;
+                // From 346 to -13 is screen 1 => 0 to -360.
+                // From -14 to -373 is screen 2 => -360 to -720.
+                var screen = 1 + (((int)Traverse.Create(entity).Field("m_position").GetValue<Vector2>().Y - 346) / -360);
                 if (screens.Contains(screen))
                 {
                     _ = traverse.Field("m_appear_sfx").SetValue(null);
